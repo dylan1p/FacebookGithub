@@ -1,7 +1,7 @@
 import { all, fork, call, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
-const FETCH_FACEBOOK_PROJECTS_URL = "https://api.github.com/users/facebook/repos";
+const FETCH_FACEBOOK_PROJECTS_URL = "https://api.github.com/orgs/facebook/repos";
 const FETCH_FACEBOOK_PROJECT_URL = "https://api.github.com/repos/facebook";
 
 function getProjectDetails(projectName) {
