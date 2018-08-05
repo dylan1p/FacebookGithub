@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as actionCreators from "../actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions';
 import ProjectList from './ProjectList';
 import ProjectDetails from './ProjectDetails';
+import styles from '../scss/App.scss';
 
 class App extends Component {
 
@@ -22,16 +23,20 @@ class App extends Component {
     } = this.props;
 
     return (
-      <div>
-        <ProjectList projects={projects} selectProject={this.selectProject.bind(this)}/>
-        <ProjectDetails projectDetails={projectDetails}></ProjectDetails>
+      <div className={styles.app}>
+        <ProjectList containerStyles={styles.projectList}
+                     projects={projects}
+                     selectProject={this.selectProject.bind(this)}/>
+
+        <ProjectDetails containerStyles={styles.projectDetails}
+                        projectDetails={projectDetails}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = dispatch => (bindActionCreators(actionCreators, dispatch));
+const mapDispatchToProps = dispatch => bindActionCreators(actionCreators, dispatch);
 
 export default connect(
   mapStateToProps,

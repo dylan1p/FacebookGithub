@@ -1,23 +1,36 @@
-import React from "react";
+import React from 'react';
+import styles from '../scss/ProjectDetails.scss';
+import classNames from 'classnames/bind';
 
-const ProjectDetails = ({projectDetails}) => {
-  if(projectDetails) {
-    return (
-      <div>
-        <h1>{projectDetails.details.name}</h1>
-        <div>
-          {
-            projectDetails.contributors.map((contributor, index) => {
-              return <div key={index}>{contributor.login}</div>
-            })
-          }
-        </div>
-      </div>
+const cx = classNames.bind(styles);
 
-    )
-  } else {
-    return <div>Please select a project to view details of...</div>
+const ProjectDetails = ({projectDetails, containerStyles }) => {
+
+  if(!projectDetails) {
+    return <div className={styles.noContent}>Please select a project to view details of...</div>
   }
+
+  return (
+    <div className={cx(containerStyles, styles.details)}>
+      <h1>{projectDetails.details.name}</h1>
+
+      <div className={styles.description}>{projectDetails.details.description}</div>
+
+      <div className={styles.contributorHeader}>Contributors</div>
+      <div className={styles.contributorContainer}>
+        {
+          projectDetails.contributors.map((contributor, index) => {
+            return (
+              <div key={index} className={styles.contributor}>
+                <img src={contributor.avatar_url}></img>
+                {contributor.login}
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
+  )
 }
 
 export default ProjectDetails;

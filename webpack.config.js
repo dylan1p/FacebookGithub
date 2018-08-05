@@ -19,6 +19,11 @@ module.exports = {
         test: /\.jsx?$/,
         loader: "babel-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        loader: "style-loader!css-loader?modules&camelCase",
+        exclude: /node_modules/
       }
     ]
   },
